@@ -1,0 +1,21 @@
+version: '3.1'
+# NtcBPOHYD9001
+services:
+  db:
+    image: mysql
+    container_name: docker_db_1
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      TZ: "${TZ:-Asia/Kolkata}"
+    volumes:
+      - newmysqlvolume1:/var/lib/mysql
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    container_name: adminer
+    ports:
+      - 8080:8080
+volumes:
+  newmysqlvolume1:
+    driver: local
